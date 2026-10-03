@@ -1,0 +1,795 @@
+/* =========================================================
+   CINNAMON AND HONEY RECIPE - A
+   Aba "[1 PRESELL EN]" do doc "[2 PRESSEL] CINNAMON AND HONEY RECIPE"
+
+   LAYOUT: reproduzido do CSS REAL da pagina de referencia
+   (today.com/health/mind-body/...). Os bundles foram baixados e as
+   variaveis do tema resolvidas. Nao foi estimado por print.
+
+   Tema da referencia:
+     --primary-font    Prata, Geneva          -> titulo
+     --tertiary-font   CrimsonPro, Times      -> apoio e corpo
+     --secondary-font  Mada, Arial            -> kicker, data, autor
+     --grey-70  #2a2a2a  titulo, corpo
+     --grey-60  #555     apoio, data, legenda
+
+   Medidas da referencia:
+     kicker (unibrow)  0.75rem = 12px, caixa alta, #2a2a2a
+     titulo            2.5rem = 40px desktop / 1.5rem = 24px mobile,
+                       peso normal, line-height 1.5, margin 0 0 20px
+     apoio (dek)       1.5rem = 24px desktop / 1.25rem = 20px mobile,
+                       peso normal, #555
+     data              0.75rem = 12px, Mada, #555
+     nome do autor     1.125rem = 18px, Mada, line-height 1.5
+     paragrafo         margin 1.5rem 0
+
+   Os dois destaques em vermelho ("1 in 2 Seniors" no titulo e a fonte
+   na linha da data) vem do DOC, nao da referencia — sao escolha
+   editorial da peca. Ver README.txt, item 1.
+   ========================================================= */
+
+:root {
+  --ink: #2a2a2a;
+  /* grey-70 */
+  --muted: #555;
+  /* grey-60 */
+  --red: #ff0000;
+  --link: #1155cc;
+  --rule: #e2e2e2;
+  --accent-orange: #ffb186;
+  --primary: Prata, Geneva, Georgia, "Times New Roman", serif;
+  --tertiary: "Crimson Pro", CrimsonPro, "Times New Roman", Times, Georgia, serif;
+  --secondary: Mada, Arial, Helvetica, sans-serif;
+  --arrow-link-mask: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M10 0a10 10 0 1 0 0 20A10 10 0 0 0 10 0Zm-1.2 5.1 4.9 4.9-4.9 4.9-1.4-1.4L11 10 7.4 6.5 8.8 5.1Z'/%3E%3C/svg%3E");
+  --wrap: 700px;
+}
+
+* {
+  box-sizing: border-box
+}
+
+html {
+  -webkit-text-size-adjust: 100%
+}
+
+.byline.first:before {
+  content: unset !important;
+}
+
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--ink);
+  font-family: var(--tertiary);
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block
+}
+
+a {
+  color: var(--link)
+}
+
+/* ---------- CABECALHO ----------
+   Medidas do header.css da referencia (.hfsh):
+     .hfsh                 font-family Mada
+     .local                fundo #fff, flex-column no mobile,
+                           flex-row acima de 758px
+     .local-inner          max-width 1310px, margin 0 auto
+     .logo-wrap            padding 0 10px 0 20px
+     .sunrise (icone)      #ff503c, 15px no mobile / 24px desktop
+     .brand-svg (wordmark) 15px no mobile / 24px desktop
+     .shortcuts            color #2a2a2a, justify-content flex-end no
+                           mobile / flex-start acima de 758px
+     .shortcuts-list       font-size 18px, font-weight bold
+     .shortcuts-list-item  display inline-block, margin 0 16px 0 0
+     item <a>              bold, letter-spacing -.03em, CAIXA ALTA,
+                           min-height 44px, text-align center
+     hover                 #ff503c + barra de 2px embaixo
+   A faixa de promo do topo vem do print do doc (IMG1), nao da
+   pagina de referencia atual. Ver README.txt, item 7. */
+.topbar {
+  background: #fffad1;
+  color: var(--ink);
+  font-family: var(--secondary);
+  font-size: 18px;
+  line-height: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 18px 16px;
+  position: relative;
+  z-index: 10000;
+}
+
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 1280px;
+  width: 100%;
+}
+
+.topbar-inner a {
+  color: inherit;
+  text-decoration: none;
+  margin: 0 20px 0 0
+}
+
+/* Icone do fim do marquee. Na referencia e um glifo de fonte:
+   <span class="icon icon-arrow-link"> com
+   .icon-arrow-link:before{content:"10e"}
+   Sem a fonte deles, o mesmo desenho (circulo com seta) entra no
+   ::before como SVG. Medidas do tema: 12px, margin-left 8px. */
+.icon-arrow-link {
+  color: currentColor;
+  display: inline-block;
+  font-size: 12px;
+  margin-left: 8px;
+}
+
+.icon-arrow-link::before {
+  content: "";
+  display: inline-block;
+  vertical-align: baseline;
+  width: 1em;
+  height: 1em;
+  background-color: currentColor;
+  -webkit-mask: var(--arrow-link-mask) center/contain no-repeat;
+  mask: var(--arrow-link-mask) center/contain no-repeat;
+}
+
+.topbar-inner a:hover {
+  text-decoration: underline
+}
+
+.site-header {
+  font-family: var(--secondary);
+  background: #fff;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.site-header-inner {
+  max-width: 1310px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-top {
+  display: flex;
+  align-items: center;
+  width: 100%
+}
+
+.site-logo {
+  display: flex;
+  align-items: center;
+  padding: 0 10px 0 20px;
+  text-decoration: none;
+  color: #000;
+  height: 56px;
+  flex-shrink: 0;
+}
+
+.site-logo svg {
+  color: #ff503c;
+  height: 15px;
+  width: auto;
+  margin-right: 2px
+}
+
+.site-logo .wordmark {
+  font-family: var(--secondary);
+  font-weight: 900;
+  font-size: 18px;
+  letter-spacing: -.5px;
+  line-height: 1;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.site-nav {
+  display: none;
+  color: var(--ink);
+  align-items: center;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-wrap: wrap;
+  font-size: 18px;
+  font-weight: 700;
+  height: 100%;
+  text-align: left;
+}
+
+.site-nav a {
+  display: inline-block;
+  position: relative;
+  margin: 0 16px 0 0;
+  padding: 0 2px;
+  min-height: 44px;
+  line-height: 44px;
+  color: inherit;
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: -.03em;
+  text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.site-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 11px;
+  width: 100%;
+  height: 2px;
+  background: #ff503c;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform .25s;
+}
+
+.site-nav a:hover {
+  color: #ff503c
+}
+
+.site-nav a:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left
+}
+
+/* .local-insert da referencia: margin 0 20px 0 auto (14px acima de
+   758px). O hamburger la tem 50px de largura e 60px de altura. */
+.site-header-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 20px 0 auto;
+  height: 60px;
+  flex-shrink: 0;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--ink);
+  font-size: 20px;
+  line-height: 1;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-btn svg {
+  width: 20px;
+  height: 20px;
+  display: block
+}
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  width: 50px;
+  height: 60px;
+  background: none;
+  border: 0;
+  padding: 0;
+  color: inherit;
+}
+
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--ink)
+}
+
+.site-nav-mobile {
+  display: none
+}
+
+/* ---------- COLUNA ---------- */
+/* .layout-grid-container da referencia: calc(100% - 40px) acima de
+   758px, 960px acima de 1000px, 1200px acima de 1240px.
+   .article-body--custom-column ocupa 62.5% disso -> 600px / 750px. */
+.wrap {
+  max-width: calc(100% - 40px);
+  margin: 0 auto;
+  padding: 0
+}
+
+/* ---------- TOPO DO ARTIGO ---------- */
+
+/* unibrow: 0.75rem, caixa alta, #2a2a2a, Mada */
+.kicker {
+  font-family: var(--secondary);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin: 0 0 3px;
+}
+
+/* titulo: Prata 2.5rem, peso normal, line-height 1.5 */
+.headline {
+  font-family: var(--primary);
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--ink);
+  margin: 10px 0 20px;
+}
+
+.headline .red,
+.red {
+  color: var(--red)
+}
+
+/* apoio: CrimsonPro 1.5rem, peso normal, #555 */
+.standfirst {
+  font-family: var(--tertiary);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--muted);
+  margin: 0 0 16px;
+}
+
+/* data: Mada 0.75rem, #555 */
+.pub-line {
+  font-family: var(--secondary);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--muted);
+  margin: 0 0 4px;
+}
+
+.pub-line .src {
+  color: var(--red);
+  font-weight: 700
+}
+
+/* cartao de autor: nome Mada 1.125rem */
+.byline {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  /* 2rem no topo e o padding da referencia, e e o que abre espaco
+     para a barra. Os 18px de baixo sao os que ja estavam aqui, para
+     nao mexer no espacamento do bloco seguinte. */
+  padding: 2rem 0 18px;
+  position: relative;
+  margin: 0
+}
+
+/* Barra laranja: o ::before de
+   body.today .styles_expandedByline__A_FvE na referencia.
+   Cunha de 16px — cheia a esquerda, afinando ate 40% a direita. */
+.byline::before {
+  clip-path: polygon(0 0, 100% 40%, 100% 100%, 0 100%);
+  background: var(--accent-orange);
+  content: "";
+  width: 100%;
+  height: 16px;
+  position: absolute;
+  top: 0;
+}
+
+.byline .avatar {
+  width: 45px;
+  height: 45px;
+  flex-shrink: 0;
+  background: #e4e4e4;
+  overflow: hidden;
+}
+
+.byline .avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover
+}
+
+.byline .name {
+  font-family: var(--secondary);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 150%;
+  color: var(--ink);
+  margin: 0;
+}
+
+.byline .role {
+  font-family: var(--secondary);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 150%;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* ---------- BARRA SHARE / SAVE / ADD TO GOOGLE ----------
+   body.today .styles_shareActionsContainer:
+     --share-dropdown-button-font-family  --tertiary-font (Crimson Pro)
+     --share-dropdown-button-font-size    1.25rem = 20px
+     --share-dropdown-button-line-height  1.5
+     --share-dropdown-button-text-transform  none
+     --share-dropdown-button-color        --grey-70  #2a2a2a
+     --share-dropdown-button-icon-color   --secondary-color #7c4e9f
+     --share-dropdown-button-gap          0.4375rem = 7px
+     --share-dropdown-button-padding      8px 16px 8px 0
+     --article-share-actions-cta--padding 0 16px
+   Separador: :before de 1px por 1.25rem (20px) em --grey-40 #ccc,
+   centrado verticalmente. */
+.share-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0 0 18px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.share-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: var(--tertiary);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--ink);
+  text-transform: none;
+  transition: opacity .2s ease;
+}
+
+.share-item:hover {
+  opacity: .7
+}
+
+.share-btn {
+  padding: 8px 16px 8px 0
+}
+
+.share-rule {
+  position: relative;
+  padding: 0 16px;
+  flex-shrink: 0
+}
+
+.share-rule::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 1px;
+  height: 20px;
+  background-color: #ccc;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.share-ico {
+  display: block;
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+  color: #7c4e9f;
+}
+
+.google-ico {
+  flex-basis: 21px;
+  width: 21px;
+  height: 21px
+}
+
+.ico-stroke {
+  fill: none;
+  stroke: currentColor
+}
+
+.g-back {
+  fill: none;
+  stroke: currentColor
+}
+
+.g-front {
+  fill: #fff;
+  stroke: currentColor
+}
+
+.g-plus {
+  fill: currentColor
+}
+
+.share-txt {
+  white-space: nowrap;
+  min-width: 0
+}
+
+.share-brand {
+  display: inline
+}
+
+/* ---------- CORPO ----------
+   body-graf da referencia: margin 1.5rem 0. Corpo em CrimsonPro,
+   cor #2a2a2a (--article-body-color: grey-70). */
+.article p {
+  font-family: var(--tertiary);
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--ink);
+  margin: 24px 0;
+}
+
+.article p strong {
+  font-weight: 700
+}
+
+.article p.quote {
+  font-weight: 700
+}
+
+.article p.share-note {
+  font-style: italic
+}
+
+.article figure {
+  margin: 28px 0
+}
+
+.article figure img {
+  width: 100%
+}
+
+.article figcaption {
+  font-family: var(--tertiary);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted);
+  margin-top: 10px;
+}
+
+.spk {
+  font-weight: 700
+}
+
+/* ---------- CTA ---------- */
+.cta-lede {
+  font-family: var(--secondary);
+  text-align: center;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  color: #1a4dff;
+  margin: 30px 0 16px;
+}
+
+.cta-thumb {
+  display: block;
+  margin: 0 0 16px
+}
+
+.cta-thumb img {
+  width: 100%
+}
+
+.cta-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  font-family: var(--secondary);
+  background: #cc0000;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.3;
+  padding: 18px 20px;
+  border-radius: 4px;
+  margin: 0 0 28px;
+  transition: background-color .2s ease;
+}
+
+.cta-btn a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+}
+
+.cta-btn:hover {
+  background: #a30000
+}
+
+/* ---------- ACIMA DE 758px ----------
+   A referencia troca .local para flex-row, mostra a nav e sobe o
+   logo e o wordmark de 15px para 24px. */
+@media only screen and (min-width:758px) {
+  .site-header-inner {
+    flex-direction: row;
+    align-items: center
+  }
+
+  .site-logo svg {
+    height: 24px;
+    margin-right: 4px
+  }
+
+  .site-logo .wordmark {
+    font-size: 28px
+  }
+
+  .site-nav {
+    display: flex
+  }
+
+  .site-header-right {
+    margin: 0 14px 0 auto
+  }
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width:757px) {
+  .site-header-inner {
+    flex-direction: column
+  }
+
+  .site-logo {
+    height: 50px
+  }
+
+  .site-nav-mobile {
+    display: flex;
+    overflow-x: auto;
+    border-bottom: 1px solid var(--rule);
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .site-nav-mobile::-webkit-scrollbar {
+    display: none
+  }
+
+  .site-nav-mobile a {
+    flex: 0 0 auto;
+    padding: 10px 14px;
+    font-family: var(--secondary);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -.03em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    white-space: nowrap;
+    border-right: 1px solid var(--rule);
+  }
+
+  .site-header-right {
+    height: 50px;
+    margin-right: 14px
+  }
+}
+
+@media (max-width:768px) {
+
+  .wrap,
+  .footer-inner {
+    padding-left: 16px;
+    padding-right: 16px
+  }
+
+  .headline {
+    font-size: 24px;
+    line-height: 1.35;
+    margin: 8px 0 14px
+  }
+
+  .standfirst {
+    font-size: 20px
+  }
+
+  .article p {
+    font-size: 18px;
+    margin: 20px 0
+  }
+
+  .cta-lede {
+    font-size: 22px
+  }
+
+  .cta-btn {
+    font-size: 18px;
+    padding: 16px 14px
+  }
+
+  .comment-text {
+    font-size: 17px
+  }
+}
+
+/* ---------- LARGURA DA COLUNA: breakpoints da referencia ----------
+   .layout-grid-container: 960px acima de 1000px, 1200px acima de
+   1240px. .article-body--custom-column ocupa 62.5% -> 600px / 750px. */
+@media only screen and (min-width:1000px) {
+  .wrap {
+    max-width: 600px
+  }
+
+  .footer-inner {
+    max-width: 960px
+  }
+}
+
+@media only screen and (min-width:1240px) {
+  .wrap {
+    max-width: 750px
+  }
+
+  .footer-inner {
+    max-width: 1200px
+  }
+}
+/* ---------- BLOCOS QUE SO EXISTEM NESTE DOC ----------
+   O doc traz um subtitulo em azul, os tres depoimentos de atores
+   (nome + foto + fala em italico) e a lista do que o video mostra.
+   Nada disso existia na CINNAMON A, entao as regras sao novas —
+   mas usam as mesmas variaveis de tema da referencia. */
+
+/* [doc 85] — o subtitulo azul, mesma cor de link do doc */
+.spk.blue {
+  color: var(--link);
+}
+
+/* [doc 87], [doc 91], [doc 95] — nome do ator, sz30 (15pt), negrito */
+.star-name {
+  font-family: var(--tertiary);
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--ink);
+  margin: 28px 0 10px;
+}
+
+/* [doc 89], [doc 93], [doc 97] — a fala, sz30 (15pt) em italico */
+.star-quote {
+  font-family: var(--tertiary);
+  font-size: 20px;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--ink);
+  margin: 10px 0 0;
+}
+
+/* [doc 116] a [doc 119] */
+.video-list {
+  font-family: var(--tertiary);
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--ink);
+  margin: 12px 0 0;
+  padding-left: 24px;
+}
+
+.video-list li {
+  margin-bottom: 10px;
+}
